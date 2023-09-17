@@ -1,0 +1,37 @@
+type Mutation {
+  createUser(input: CreateUserInput!): CreateUserOutput!
+
+  updateUser(input: UpdateUserInput!): UpdateUserOutput!
+}
+
+input CreateUserInput {
+  phoneNumber: String!
+  nickname: String!
+}
+
+union CreateUserOutput = CreateUserOutput_Result | Error
+
+type CreateUserOutput_Result {
+  result: CreateUserOutput_ResultPayload!
+}
+
+type CreateUserOutput_ResultPayload {
+  user: User!
+}
+
+input UpdateUserInput {
+  originalUserId: String!
+  nickname: String
+  phoneNumber: String
+  bio: String
+}
+
+union UpdateUserOutput = UpdateUserOutput_Result | Error
+
+type UpdateUserOutput_Result {
+  result: UpdateUserOutput_ResultPayload!
+}
+
+type UpdateUserOutput_ResultPayload {
+  user: User!
+}

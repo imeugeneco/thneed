@@ -1,0 +1,22 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("LOCAL_DATA_URL")
+}
+
+model User {
+  createdAt   DateTime  @default(now()) @map("created_at") @db.DateTime(6)
+  updatedAt   DateTime  @default(now()) @map("updated_at") @db.DateTime(6)
+  deletedAt   DateTime? @map("deleted_at") @db.DateTime(6)
+  id          Int       @id @default(autoincrement())
+  phoneNumber String    @map("phone_number") @db.VarChar(100)
+  nickname    String    @db.VarChar(100)
+  bio         String?   @db.VarChar(512)
+}

@@ -1,0 +1,13 @@
+type User implements Node {
+  id: ID!
+
+  originalId: String!
+
+  createdAt: DateTime!
+
+  phoneNumber: String!
+
+  nickname: String!
+
+  bio: String
+}
